@@ -3,11 +3,11 @@ export const LoginPage = () => (
   <form className="box">
     <h1 className="title has-text-centered">Login</h1>
     <div className="field">
-      <label className="label">Email Address</label>
+      <label className="label">Username</label>
       <div className="control">
         <input
-          type="email"
-          placeholder="Enter email"
+          type="text"
+          placeholder="Enter username"
           className="input"
           required
         />
