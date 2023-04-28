@@ -14,7 +14,6 @@
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
     <link rel="stylesheet" href="https://appsrv1-147a1.kxcdn.com/dattaable/plugins/animation/css/animate.min.css">
     <link rel="stylesheet" href="https://appsrv1-147a1.kxcdn.com/dattaable/css/style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://andrewstech.github.io/public/peer-brain/style.css">
     <style>
         /* Adjust the layout for small screens */
@@ -28,6 +27,18 @@
             .fa {
                 margin-top: 20px;
             }
+            .container {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            }
+            .center {
+            text-align: center;
+            border: none;
+            }
+
         }
     </style>
 </head>
@@ -40,10 +51,10 @@
                 <span class="r s"></span>
                 <span class="r"></span>
             </div>
-                <div class="card">
-                    <noscript>You need to enable JavaScript to run this app.</noscript>
-                    <div id="root"></div>
-                </div>
+    <div class="container">
+        <noscript>You need to enable JavaScript to run this app.</noscript>
+        <div id="root"></div>
+    </div>
             </div>
         </div>
     </div>
