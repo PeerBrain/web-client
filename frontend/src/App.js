@@ -1,8 +1,8 @@
 import { Routes, Route } from "react-router-dom";
-import { LoginPage } from "./pages/Login";
+import LoginPage from "./pages/Login";
 import { HomePage } from "./pages/Home";
 import { RegisterPage } from "./pages/Register";
-import { ProfilePage } from "./pages/Profile";
+import ProfilePage from './pages/Profile';
 import { PageNotFound } from "./pages/PageNotFound";
 
 export default function App() {
