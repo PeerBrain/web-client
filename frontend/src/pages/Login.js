@@ -59,7 +59,7 @@ async function handleauth(data) {
     .then(data => {
       console.log('Success:', data);
       localStorage.setItem('token', data.access_token);
-      window.location.href = 'https://andrewstech-supreme-goggles-vqg554q5gggfq4v-3000.preview.app.github.dev/profile';
+      //window.location.href = 'https://andrewstech-supreme-goggles-vqg554q5gggfq4v-3000.preview.app.github.dev/profile';
     }
     // if response is bad, display error message
     ).catch((error) => {
