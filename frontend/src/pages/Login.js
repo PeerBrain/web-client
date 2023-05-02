@@ -2,8 +2,8 @@ import React from 'react';
 import { useForm } from "react-hook-form";
 
 const LoginPage = () => {
-  localStorage.removeItem('username');
-  localStorage.removeItem('token');
+  //localStorage.removeItem('username');
+  //localStorage.removeItem('token');
   const { register, handleSubmit, watch, formState: { errors } } = useForm();
   const onSubmit = data => handleauth(data);
   return (
@@ -56,15 +56,25 @@ async function handleauth(data) {
         }),
     })
     .then(response => response.json())
-    .then(data => {
-      console.log('Success:', data);
+    .then(async data => {
       localStorage.setItem('token', data.access_token);
+      await fetch('https://peerbrain.teckhawk.be/api/v1/me', {
+        method: 'GET',
+        headers: {
+          'Authorization': `Bearer ${data.access_token}`,
+          'accept': 'application/json',
+        }
+      })
+      .then(response => response.json())
+      .then(data => {
+        localStorage.setItem('username', data.username);
+      })
+
       //window.location.href = 'https://andrewstech-supreme-goggles-vqg554q5gggfq4v-3000.preview.app.github.dev/profile';
-    }
-    // if response is bad, display error message
-    ).catch((error) => {
+    })
+    .catch((error) => {
       console.error('Error:', error);
-      alert("Invalid username or password");
+      alert('Invalid username or password');
     }
   );
 
