@@ -3,10 +3,10 @@ export const HomePage = () => (
         <div className="box">
           <h1 className="title has-text-centered">PeerBrain</h1>
           <div class="columns">
-            <button className="column button is-primary" onClick={() => window.location.href = 'https://web.peerbrain.net/login'>
+            <button className="column button is-primary" onClick={() => window.location.href = 'https://web.peerbrain.net/login'}>
               Login
             </button>
-            <button className="column button is-primary" onClick={() => window.location.href = 'https://web.peerbrain.net/register'>
+            <button className="column button is-primary" onClick={() => window.location.href = 'https://web.peerbrain.net/register'}>
               Register
             </button>
           </div>
