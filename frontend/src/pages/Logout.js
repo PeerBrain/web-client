@@ -10,3 +10,5 @@ function LoggedOut() {
     </div>
     );
 }
+
+export default LoggedOut;
