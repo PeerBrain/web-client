@@ -2,8 +2,6 @@ import React from 'react';
 import { useForm } from "react-hook-form";
 
 const LoginPage = () => {
-  //localStorage.removeItem('username');
-  //localStorage.removeItem('token');
   const { register, handleSubmit, watch, formState: { errors } } = useForm();
   const onSubmit = data => handleauth(data);
   return (
@@ -69,8 +67,7 @@ async function handleauth(data) {
       .then(data => {
         localStorage.setItem('username', data.username);
       })
-
-      //window.location.href = 'https://andrewstech-supreme-goggles-vqg554q5gggfq4v-3000.preview.app.github.dev/profile';
+      window.location.href = 'https://web.peerbrain.net/profile';
     })
     .catch((error) => {
       console.error('Error:', error);

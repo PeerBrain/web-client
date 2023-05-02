@@ -42,7 +42,7 @@ function ProfilePage() {
         <h1 className="title has-text-centered">PeerBrain</h1>
         <h2 className="subtitle has-text-centered">Logged in as {user}</h2>
         <div className="columns">
-          <button className="column button is-primary" onClick={() => window.location.href = 'https://web.peerbrain.net/login'}>
+          <button className="column button is-primary" onClick={() => window.location.href = 'https://web.peerbrain.net/logout'}>
             Logout
           </button>
         </div>

@@ -4,6 +4,7 @@ import { HomePage } from "./pages/Home";
 import { RegisterPage } from "./pages/Register";
 import ProfilePage from './pages/Profile';
 import { PageNotFound } from "./pages/PageNotFound";
+import LoggedOut from "./pages/Logout";
 
 export default function App() {
   return (
@@ -12,6 +13,7 @@ export default function App() {
       <Route path="/login" element={<LoginPage />} />
       <Route path="/register" element={<RegisterPage />} />
       <Route path="/profile" element={<ProfilePage />} />
+      <Route path="/logout" element={<LoggedOut />} />
       <Route path="*" element={<PageNotFound />} />
 
     </Routes>
