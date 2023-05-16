@@ -1,30 +1,29 @@
-const crypto = require('crypto');
-const { privateKeyExport, publicKeyExport } = require('crypto');
+import React, { useState } from 'react';
+import forge from 'node-forge';
 
-function generate_keypair() {
-  const { privateKey, publicKey } = crypto.generateKeyPairSync('rsa', {
-    modulusLength: 2048,
-    publicExponent: 65537,
-  });
+function GenerateKeypair() {
+  const [keypair, setKeypair] = useState(null);
 
-  const private_key = privateKeyExport({
-    format: 'pem',
-    type: 'pkcs8',
-    key: privateKey,
-  });
+  const handleGenerateKeypair = async () => {
+    const rsa = forge.pki.rsa;
+    const keyPair = rsa.generateKeyPair({bits: 2048, e: 0x10001});
 
-  const public_key = publicKeyExport({
-    format: 'pem',
-    type: 'spki',
-    key: publicKey,
-  });
+    const privateKey = forge.pki.privateKeyToPem(keyPair.privateKey);
+    const publicKey = forge.pki.publicKeyToPem(keyPair.publicKey);
+    const randomBuffer = forge.random.getBytesSync(32);
+    console.log(randomBuffer)
+    const symmetricKey = forge.util.encode64(randomBuffer).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
 
-  const key = crypto.randomBytes(32);
-  localStorage.setItem("symmetric-key", key)
-  localStorage.setItem("publickey", public_key)
-  localStorage.setItem("privatekey", private_key)
-  return [key, public_key, private_key];
+    localStorage.setItem('symmetric-key', symmetricKey);
+    localStorage.setItem('public-key', btoa(publicKey));
+    localStorage.setItem('private-key', btoa(privateKey));
+
+    setKeypair({
+      symmetricKey: symmetricKey,
+      publicKey: btoa(publicKey),
+      privateKey: btoa(privateKey),
+    });
+  };
 }
 
-
-export default generate_keypair
+export default GenerateKeypair;

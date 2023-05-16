@@ -10,8 +10,10 @@ function GenerateKeypair() {
 
     const privateKey = forge.pki.privateKeyToPem(keyPair.privateKey);
     const publicKey = forge.pki.publicKeyToPem(keyPair.publicKey);
+    const randomBuffer = forge.random.getBytesSync(32);
+    console.log(randomBuffer)
+    const symmetricKey = forge.util.encode64(randomBuffer).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
 
-    const symmetricKey = forge.random.getBytesSync(32);
     localStorage.setItem('symmetric-key', symmetricKey);
     localStorage.setItem('public-key', btoa(publicKey));
     localStorage.setItem('private-key', btoa(privateKey));
