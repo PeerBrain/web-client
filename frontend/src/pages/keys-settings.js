@@ -1,8 +1,8 @@
 import { useForm } from "react-hook-form";
 import { useState, useEffect } from 'react';
-import GenerateKeypair from "../components/keys";
+//import HandleGenerateKeypair from "../components/keys";
 import UploadKey from "../components/uploadkey";
-function TokenSettings() {
+function KeySettings() {
     const { register, handleSubmit, watch, formState: { errors } } = useForm();
     const privateKey = localStorage.getItem('private-key');
     const publicKey = localStorage.getItem('public-key');
@@ -44,7 +44,7 @@ function TokenSettings() {
   }
   return (
     <div className="box">
-      <h1 className="title has-text-centered">Token Settings</h1>
+      <h1 className="title has-text-centered">Keys Settings</h1>
         <form onSubmit={handleSubmit(onSubmit)}>
         <div className="columns">
             <div className="field">
@@ -75,7 +75,7 @@ function TokenSettings() {
                 required
                 {...register("private")}
                 />        
-            <button className="button is-primary" type="submit">Save</button>    
+            <button className="button is-primary" type="submit">Save</button>
             </div>
             
         
@@ -85,4 +85,4 @@ function TokenSettings() {
   );
 }
 
-export default TokenSettings;
+export default KeySettings;

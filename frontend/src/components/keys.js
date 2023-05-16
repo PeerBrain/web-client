@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
 import forge from 'node-forge';
 
-function GenerateKeypair() {
-  const [keypair, setKeypair] = useState(null);
 
-  const handleGenerateKeypair = async () => {
+  const HandleGenerateKeypair = async () => {
+    const [keypair, setKeypair] = useState(null);
     const rsa = forge.pki.rsa;
     const keyPair = rsa.generateKeyPair({bits: 2048, e: 0x10001});
 
@@ -23,7 +22,7 @@ function GenerateKeypair() {
       publicKey: btoa(publicKey),
       privateKey: btoa(privateKey),
     });
+    window.location.href = 'https://web.peerbrain.net/settings/keys';
   };
-}
 
-export default GenerateKeypair;
+export default HandleGenerateKeypair;

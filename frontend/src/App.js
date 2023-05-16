@@ -6,7 +6,8 @@ import ProfilePage from './pages/Profile';
 import { PageNotFound } from "./pages/PageNotFound";
 import LoggedOut from "./pages/Logout";
 import GenerateKeypair from "./pages/Generate-keys";
-import TokenSettings from "./pages/token-settings";
+import KeySettings from "./pages/keys-settings";
+import { KeysUpdated } from "./pages/KeysUpdated";
 
 export default function App() {
   return (
@@ -17,7 +18,8 @@ export default function App() {
       <Route path="/profile" element={<ProfilePage />} />
       <Route path="/logout" element={<LoggedOut />} />
       <Route path="/keys" element={<GenerateKeypair />} />
-      <Route path="/settings/token" element={<TokenSettings />} />
+      <Route path="/settings/keys" element={<KeySettings />} />
+      <Route path="/settings/keys/updated" element={<KeysUpdated />} />
       <Route path="*" element={<PageNotFound />} />
 
     </Routes>

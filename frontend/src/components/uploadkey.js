@@ -2,7 +2,7 @@ async function UploadKey(data, token) {
     const publicKey = data.public;
     const symmetricKey = data.Symmetric;
     const privateKey = data.private;
-    await fetch('https://peerbrain.teckhawk.be/api/v1/post_key_store', {
+    const response = await fetch('https://peerbrain.teckhawk.be/api/v1/post_key_store', {
         method: 'POST',
         headers: {
             "accept": "application/json",
@@ -14,19 +14,16 @@ async function UploadKey(data, token) {
             "symmetric_key": symmetricKey
         })
     })
-        .then(response => response.json())
-        .then(data => {
-            console.log(data);
-            if (data.status === "success") {
-                localStorage.setItem('publicKey', btoa(publicKey));
-                localStorage.setItem('symmetricKey', symmetricKey);
-                localStorage.setItem('privateKey', btoa(privateKey));
-                alert("Key Uploaded");
-            }
-            else {
-                alert("Key Upload Failed");
-            }
-        })
+    if (!response.ok) {
+        console.log(response.status);
+        throw new Error(response.status);
+    }
+    if (response.ok) {
+        localStorage.setItem('publicKey', btoa(publicKey));
+        localStorage.setItem('symmetricKey', symmetricKey);
+        localStorage.setItem('privateKey', btoa(privateKey));
+        window.location.href = 'https://web.peerbrain.net/settings/keys/updated';
+    }
 
 
 }

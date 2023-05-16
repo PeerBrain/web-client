@@ -52,8 +52,8 @@ function ProfilePage() {
           </button>    
         </div>
         <div className="columns">
-          <button className="column button is-primary" onClick={() => window.location.href = 'https://web.peerbrain.net/login'}>
-            Delete Account
+          <button className="column button is-primary" onClick={() => window.location.href = 'https://web.peerbrain.net/settings/keys'}>
+            Keys Settings
           </button>
         </div>
       </div>  
