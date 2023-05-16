@@ -1,14 +1,51 @@
 import { useForm } from "react-hook-form";
+import { useState, useEffect } from 'react';
 import GenerateKeypair from "../components/keys";
+import UploadKey from "../components/uploadkey";
 function TokenSettings() {
     const { register, handleSubmit, watch, formState: { errors } } = useForm();
     const privateKey = localStorage.getItem('private-key');
     const publicKey = localStorage.getItem('public-key');
     const symmetricKey = localStorage.getItem('symmetric-key');
+    const [user, setUser] = useState(localStorage.getItem('username') || '');
+  const [token, setToken] = useState(localStorage.getItem('token') || '');
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const onSubmit = data => UploadKey(data, token);
+
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const response = await fetch('https://mfa.peerbrain.net/api/v1/token-test', {
+          method: 'GET',
+          headers: {
+            'token': `${token}`,
+          },
+        });
+        if (!response.ok) {
+            console.log(response.status);
+          throw new Error(response.status);
+        }
+        setLoading(false);
+      } catch (error) {
+        setError(error);
+        setLoading(false);
+      }
+    }
+    fetchData();
+  }, [token]);
+
+  if (loading) {
+    return <div className='box'>Loading...</div>;
+  }
+
+  if (error) {
+    return <div className='box'>Error: Please Login</div>;
+  }
   return (
     <div className="box">
       <h1 className="title has-text-centered">Token Settings</h1>
-        <form>
+        <form onSubmit={handleSubmit(onSubmit)}>
         <div className="columns">
             <div className="field">
                 <label className="label">Symmetric Key</label>
@@ -38,8 +75,9 @@ function TokenSettings() {
                 required
                 {...register("private")}
                 />        
-            </div>
             <button className="button is-primary" type="submit">Save</button>    
+            </div>
+            
         
         </div>
         </form>    
