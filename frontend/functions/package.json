@@ -1,9 +1,5 @@
 {
   "dependencies": {
-    "buffer": "^6.0.3",
-    "crypto-browserify": "^3.12.0",
-    "fernet": "^0.4.0",
-    "pem": "^1.14.7",
-    "pem-ts": "^3.0.1"
+    "fernet": "^0.4.0"
   }
 }
