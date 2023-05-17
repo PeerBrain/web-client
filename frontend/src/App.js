@@ -17,7 +17,7 @@ export default function App() {
       <Route path="/register" element={<RegisterPage />} />
       <Route path="/profile" element={<ProfilePage />} />
       <Route path="/logout" element={<LoggedOut />} />
-      <Route path="/keys" element={<GenerateKeypair />} />
+      <Route path="/settings/keys/generate" element={<GenerateKeypair />} />
       <Route path="/settings/keys" element={<KeySettings />} />
       <Route path="/settings/keys/updated" element={<KeysUpdated />} />
       <Route path="*" element={<PageNotFound />} />
