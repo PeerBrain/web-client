@@ -65,9 +65,9 @@ function GenerateKeypair() {
       {keypair && (
         <div className='columns'>
           <p>We suggest backing up these keys as they can't be recoved!</p>
-          <button className="column button" onClick={() => SymmetricDownload(keypair.symmetricKey)}>Download Symmetric Key</button>
-          <button className="column button" onClick={() => saveAs(new Blob([atob(keypair.publicKey)], { type: 'text/plain;charset=utf-8' }), 'public_key.pem')}>Download Public Key</button>
-          <button className="column button" onClick={() => saveAs(new Blob([atob(keypair.privateKey)], { type: 'text/plain;charset=utf-8' }), 'private_key.pem')}>Download Private Key</button>
+          <button className="button is-primary" onClick={() => SymmetricDownload(keypair.symmetricKey)}>Download Symmetric Key</button>
+          <button className="button is-primary" onClick={() => saveAs(new Blob([atob(keypair.publicKey)], { type: 'text/plain;charset=utf-8' }), 'public_key.pem')}>Download Public Key</button>
+          <button className="button is-primary" onClick={() => saveAs(new Blob([atob(keypair.privateKey)], { type: 'text/plain;charset=utf-8' }), 'private_key.pem')}>Download Private Key</button>
         </div>
       )}
     </div>
