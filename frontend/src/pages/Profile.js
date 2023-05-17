@@ -47,13 +47,8 @@ function ProfilePage() {
           </button>
         </div>
         <div className="columns">
-          <button className="column button is-primary" onClick={() => window.location.href = 'https://web.peerbrain.net/login'}>
-            Change Password
-          </button>    
-        </div>
-        <div className="columns">
           <button className="column button is-primary" onClick={() => window.location.href = 'https://web.peerbrain.net/settings/keys'}>
-            Keys Settings
+           Settings
           </button>
         </div>
       </div>  

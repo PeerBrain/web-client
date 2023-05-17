@@ -36,6 +36,9 @@ const LoginPage = () => {
         <button className="button is-primary" type="submit">
           Login
         </button>
+        <button className="button is-primary" onClick={() => window.location.href = 'https://web.peerbrain.net/reset-password'}>
+          Reset Password
+        </button>
       </form>
     </div>
   );
