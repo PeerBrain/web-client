@@ -63,11 +63,13 @@ function GenerateKeypair() {
         <button className="column button is-primary" onClick={handleGenerateKeypair}>Generate Keypair</button>
       )}
       {keypair && (
-        <div className='columns'>
+        <div>
           <p>We suggest backing up these keys as they can't be recoved!</p>
           <button className="button is-primary" onClick={() => SymmetricDownload(keypair.symmetricKey)}>Download Symmetric Key</button>
           <button className="button is-primary" onClick={() => saveAs(new Blob([atob(keypair.publicKey)], { type: 'text/plain;charset=utf-8' }), 'public_key.pem')}>Download Public Key</button>
           <button className="button is-primary" onClick={() => saveAs(new Blob([atob(keypair.privateKey)], { type: 'text/plain;charset=utf-8' }), 'private_key.pem')}>Download Private Key</button>
+          <p>Keys pushed to server</p>
+          <button className="button is-primary" onClick={() => window.location.href = 'https://web.peerbrain.net/profile'}>Home</button>
         </div>
       )}
     </div>

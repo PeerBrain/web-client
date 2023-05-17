@@ -77,6 +77,7 @@ function KeySettings() {
                 />        
             <button className="button is-primary" type="submit">Save</button>
             <button className="button is-primary" onClick={() => window.location.href = 'https://web.peerbrain.net/settings/keys/generate'}>Generate New Key</button>
+            <button className="button is-primary" onClick={() => window.location.href = 'https://web.peerbrain.net/profile'}>Home</button>
             </div>
             
         
