@@ -47,7 +47,7 @@ function ProfilePage() {
           </button>
         </div>
         <div className="columns">
-          <button className="column button is-primary" onClick={() => window.location.href = 'https://web.peerbrain.net/settings/keys'}>
+          <button className="column button is-primary" onClick={() => window.location.href = 'https://web.peerbrain.net/settings'}>
            Settings
           </button>
         </div>

@@ -1,6 +1,12 @@
-export const RegisterPage = () => (
+import React from 'react';
+import { useForm } from "react-hook-form";
+
+function RegisterPage() {
+  const { register, handleSubmit, watch, formState: { errors } } = useForm();
+  const onSubmit = data => RegisterUser(data);
+  return (
     <div className="column">
-    <form className="box">
+    <form className="box"  onSubmit={handleSubmit(onSubmit)}>
       <h1 className="title has-text-centered">Register</h1>
       <div className="field">
         <label className="label">Username</label>
@@ -10,6 +16,7 @@ export const RegisterPage = () => (
             placeholder="Enter username"
             className="input"
             required
+            {...register("username")}
           />
         </div>
       </div>
@@ -21,6 +28,7 @@ export const RegisterPage = () => (
             placeholder="Enter your email"
             className="input"
             required
+            {...register("email")}
           />
         </div>
       </div>
@@ -32,6 +40,7 @@ export const RegisterPage = () => (
             placeholder="Enter password"
             className="input"
             required
+            {...register("password")}
           />
         </div>
       </div>
@@ -43,13 +52,47 @@ export const RegisterPage = () => (
             placeholder="Enter password again"
             className="input"
             required
+            {...register("ConfirmPassword")}
           />
         </div>
       </div>
       <br />
       <button className="button is-primary" type="submit">
-        Login
+        Register
       </button>
     </form>
   </div>
-    );
+  );
+}
+
+function RegisterUser(data) {
+  console.log(data);
+  if (data.password !== data.ConfirmPassword) {
+    alert('Passwords do not match');
+    return;
+  }
+  fetch('https://peerbrain.teckhawk.be/api/v1/users', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        'username': data.username,
+        'email': data.email,
+        'password': data.password,
+        }),
+    })
+    // if status is 200 then redirect to login page
+    .then(response => {
+      if (response.ok) {
+        //window.location.href = 'https://web.peerbrain.net/login';
+        alert('User created successfully. Check your email for a confirmation link.');
+      } else {
+        alert('Error: ' + response.status);
+      }
+    }
+    )
+
+}
+
+export default RegisterPage;
