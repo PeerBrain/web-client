@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import * as Sentry from "@sentry/react";
 
 function LoggedOut() {
-    setUser('');
+    Sentry.setUser({ username: '' });
     localStorage.removeItem('username');
     localStorage.removeItem('token');
   return (
