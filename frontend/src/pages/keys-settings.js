@@ -1,5 +1,6 @@
 import { useForm } from "react-hook-form";
 import { useState, useEffect } from 'react';
+import * as Sentry from "@sentry/react";
 //import HandleGenerateKeypair from "../components/keys";
 import UploadKey from "../components/uploadkey";
 function KeySettings() {
@@ -12,6 +13,7 @@ function KeySettings() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const onSubmit = data => UploadKey(data, token);
+  Sentry.setUser({ username: user });
 
   useEffect(() => {
     async function fetchData() {

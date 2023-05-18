@@ -1,10 +1,12 @@
 import { useState, useEffect } from 'react';
+import * as Sentry from "@sentry/react";
 
 function ProfilePage() {
   const [user, setUser] = useState(localStorage.getItem('username') || '');
   const [token, setToken] = useState(localStorage.getItem('token') || '');
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  Sentry.setUser({ username: user });
 
   useEffect(() => {
     async function fetchData() {

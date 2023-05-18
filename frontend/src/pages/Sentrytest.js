@@ -1,3 +1,8 @@
+import { useState, useEffect } from 'react';
+import * as Sentry from "@sentry/react";
+
+const user = localStorage.getItem('username') || '';
+Sentry.setUser({ username: user });
 function SentryTest() {
   return (
     <div>
