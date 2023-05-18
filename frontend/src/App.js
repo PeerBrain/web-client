@@ -10,6 +10,7 @@ import GenerateKeypair from "./pages/Generate-keys";
 import Settings from "./pages/Settings";
 import KeySettings from "./pages/keys-settings";
 import { KeysUpdated } from "./pages/KeysUpdated";
+import SentryTest from "./pages/Sentrytest";
 
 export default function App() {
   return (
@@ -24,6 +25,7 @@ export default function App() {
       <Route path="/settings/keys/generate" element={<GenerateKeypair />} />
       <Route path="/settings/keys" element={<KeySettings />} />
       <Route path="/settings/keys/updated" element={<KeysUpdated />} />
+      <Route path="/sentry-test" element={<SentryTest />} />
       <Route path="*" element={<PageNotFound />} />
 
     </Routes>
