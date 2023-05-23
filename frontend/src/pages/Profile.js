@@ -11,15 +11,19 @@ function ProfilePage() {
   useEffect(() => {
     async function fetchData() {
       try {
-        const response = await fetch('https://mfa.peerbrain.net/api/v1/token-test', {
+        const response = await fetch('https://peerbrain.teckhawk.be/api/v1/friends', {
           method: 'GET',
           headers: {
-            'token': `${token}`,
+            'Authorization': `Bearer ${token}`,
           },
         });
         if (!response.ok) {
             console.log(response.status);
           throw new Error(response.status);
+        }
+        else {
+            const data = await response.json();
+            console.log(data);
         }
         setLoading(false);
       } catch (error) {
