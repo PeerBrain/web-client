@@ -39,6 +39,7 @@ function ProfilePage() {
           const data = await response.json();
           console.log(data);
           setLoading(false);
+          renderButtons(data); // Render buttons after data is fetched
         }
       } catch (error) {
         setError(error);
@@ -61,7 +62,8 @@ function ProfilePage() {
       <div className="box">
         <h1 className="title has-text-centered">PeerBrain</h1>
         <h2 className="subtitle has-text-centered">Logged in as {user}</h2>
-        {renderButtons(data)}
+        {/* Buttons will be rendered by renderButtons() */}
+        <div>{renderButtons(data)}</div>
         <div className="columns">
           <button className="column button is-primary" onClick={() => window.location.href = 'https://web.peerbrain.net/logout'}>
             Logout
