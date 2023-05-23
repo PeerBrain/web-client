@@ -3,7 +3,7 @@ function Friends () {
     const { recipient } = useParams();
     return (
         <div className="box">
-            {recipient}
+            <h1 className='title has-text-centered'>{recipient}</h1>
         </div>
     )
 }
