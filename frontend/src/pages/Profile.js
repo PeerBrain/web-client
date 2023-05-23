@@ -35,8 +35,8 @@ function ProfilePage() {
                     btn.onclick = function() {
                         window.location.href = 'https://web.peerbrain.net/chat/' + key;
                     }
-                    var columnsElement = document.querySelector('.columns');
-                    document.body.insertBefore(btn, columnsElement);
+                    var columnsElement = document.querySelector('.Friends');
+                    document.body.insertAdjacentHTML(btn, columnsElement);
                 }
             }
         }
@@ -62,6 +62,8 @@ function ProfilePage() {
       <div className="box">
         <h1 className="title has-text-centered">PeerBrain</h1>
         <h2 className="subtitle has-text-centered">Logged in as {user}</h2>
+        <div className="Friends">
+        </div>
         <div className="columns">
           <button className="column button is-primary" onClick={() => window.location.href = 'https://web.peerbrain.net/logout'}>
             Logout
