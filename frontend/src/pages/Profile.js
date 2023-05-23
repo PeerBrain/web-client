@@ -7,20 +7,16 @@ function ProfilePage() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   Sentry.setUser({ username: user });
-  const Buttons = (data) => {
-    for (var key in data) {
-        if (data.hasOwnProperty(key)) {
-            console.log(key);
-            var btn = document.createElement("BUTTON");
-            btn.innerHTML = key;
-            btn.onclick = function() {
-                window.location.href = 'https://web.peerbrain.net/chat/' + key;
-            }
-            var referenceElement = document.getElementById('referenceElement');
-            document.body.appendChild(btn);
-        }
-    }
-  }
+  const handleButtonClick = (key) => {
+    // Perform any action when a button is clicked
+    console.log('Button clicked for key:', key);
+  };
+  const renderButtons = (data) => {
+    return Object.keys(data).map((key) => (
+      <JSONButton key={key} keyName={key} handleClick={handleButtonClick} />
+    ));
+  };
+
   useEffect(() => {
     async function fetchData() {
       try {
@@ -31,18 +27,12 @@ function ProfilePage() {
           },
         });
         if (!response.ok) {
-            console.log(response.status);
           throw new Error(response.status);
+        } else {
+          const data = await response.json();
+          console.log(data);
+          setLoading(false);
         }
-        else {
-            const data = await response.json();
-            console.log(data);
-            // list each key from data
-            // for each key, create a button with the key as the text
-            // when the button is clicked, it will redirect to the chat page with the key as the recipient
-              
-        }
-        setLoading(false);
       } catch (error) {
         setError(error);
         setLoading(false);
@@ -64,7 +54,7 @@ function ProfilePage() {
       <div className="box">
         <h1 className="title has-text-centered">PeerBrain</h1>
         <h2 className="subtitle has-text-centered">Logged in as {user}</h2>
-        {Buttons(data)}
+        {renderButtons(data)}
         <div className="columns">
           <button className="column button is-primary" onClick={() => window.location.href = 'https://web.peerbrain.net/logout'}>
             Logout
