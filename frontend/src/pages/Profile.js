@@ -27,18 +27,20 @@ function ProfilePage() {
             // list each key from data
             // for each key, create a button with the key as the text
             // when the button is clicked, it will redirect to the chat page with the key as the recipient
-            for (var key in data) {
-                if (data.hasOwnProperty(key)) {
-                    console.log(key);
-                    var btn = document.createElement("BUTTON");
-                    btn.innerHTML = key;
-                    btn.onclick = function() {
-                        window.location.href = 'https://web.peerbrain.net/chat/' + key;
-                    }
-                    var columnsElement = document.querySelector('.Friends');
-                    document.body.insertBefore(btn, columnsElement);
-                }
-            }
+            const Buttons = (data) => {
+              for (var key in data) {
+                  if (data.hasOwnProperty(key)) {
+                      console.log(key);
+                      var btn = document.createElement("BUTTON");
+                      btn.innerHTML = key;
+                      btn.onclick = function() {
+                          window.location.href = 'https://web.peerbrain.net/chat/' + key;
+                      }
+                      var referenceElement = document.getElementById('referenceElement');
+                      document.body.appendChild(btn);
+                  }
+              }
+            }  
         }
         setLoading(false);
       } catch (error) {
@@ -62,8 +64,7 @@ function ProfilePage() {
       <div className="box">
         <h1 className="title has-text-centered">PeerBrain</h1>
         <h2 className="subtitle has-text-centered">Logged in as {user}</h2>
-        <div className="Friends">
-        </div>
+        {Buttons(data)}
         <div className="columns">
           <button className="column button is-primary" onClick={() => window.location.href = 'https://web.peerbrain.net/logout'}>
             Logout
