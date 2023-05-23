@@ -7,7 +7,7 @@ function Friends () {
                 <div className="columns">
                     <button
                         className="column button is-primary"
-                        onClick={() => (window.location.href = 'https://web.peerbrain.net/remove-friend/{recipient}')}
+                        onClick={() => (window.location.href = `https://web.peerbrain.net/remove-friend/${recipient}`)}
                     >
                         Remove Friend
                     </button>
