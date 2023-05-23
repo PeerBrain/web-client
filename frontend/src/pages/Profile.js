@@ -29,7 +29,7 @@ function ProfilePage() {
             // when the button is clicked, it will redirect to the chat page with the key as the recipient
             for (var key in data) {
                 if (data.hasOwnProperty(key)) {
-                    console.log(key + " -> " + data[key]);
+                    console.log(key);
                     var btn = document.createElement("BUTTON");
                     btn.innerHTML = key;
                     btn.onclick = function() {
