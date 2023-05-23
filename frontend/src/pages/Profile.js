@@ -36,7 +36,7 @@ function ProfilePage() {
                         window.location.href = 'https://web.peerbrain.net/chat/' + key;
                     }
                     var columnsElement = document.querySelector('.Friends');
-                    document.body.insertAdjacentHTML(btn, columnsElement);
+                    document.body.insertBefore(btn, columnsElement);
                 }
             }
         }
