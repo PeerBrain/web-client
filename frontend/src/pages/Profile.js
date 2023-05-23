@@ -1,6 +1,13 @@
 import { useState, useEffect } from 'react';
 import * as Sentry from "@sentry/react";
 
+// Assuming you have a JSONButton component defined
+function JSONButton({ keyName, handleClick }) {
+  return (
+    <button onClick={() => handleClick(keyName)}>{keyName}</button>
+  );
+}
+
 function ProfilePage() {
   const [user, setUser] = useState(localStorage.getItem('username') || '');
   const [token, setToken] = useState(localStorage.getItem('token') || '');
