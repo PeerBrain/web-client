@@ -7,7 +7,20 @@ function ProfilePage() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   Sentry.setUser({ username: user });
-
+  const Buttons = (data) => {
+    for (var key in data) {
+        if (data.hasOwnProperty(key)) {
+            console.log(key);
+            var btn = document.createElement("BUTTON");
+            btn.innerHTML = key;
+            btn.onclick = function() {
+                window.location.href = 'https://web.peerbrain.net/chat/' + key;
+            }
+            var referenceElement = document.getElementById('referenceElement');
+            document.body.appendChild(btn);
+        }
+    }
+  }
   useEffect(() => {
     async function fetchData() {
       try {
@@ -27,20 +40,7 @@ function ProfilePage() {
             // list each key from data
             // for each key, create a button with the key as the text
             // when the button is clicked, it will redirect to the chat page with the key as the recipient
-            const Buttons = (data) => {
-              for (var key in data) {
-                  if (data.hasOwnProperty(key)) {
-                      console.log(key);
-                      var btn = document.createElement("BUTTON");
-                      btn.innerHTML = key;
-                      btn.onclick = function() {
-                          window.location.href = 'https://web.peerbrain.net/chat/' + key;
-                      }
-                      var referenceElement = document.getElementById('referenceElement');
-                      document.body.appendChild(btn);
-                  }
-              }
-            }  
+              
         }
         setLoading(false);
       } catch (error) {
