@@ -11,6 +11,7 @@ import Settings from "./pages/Settings";
 import KeySettings from "./pages/keys-settings";
 import { KeysUpdated } from "./pages/KeysUpdated";
 import SentryTest from "./pages/Sentrytest";
+import Friends from "./pages/Friends";
 
 export default function App() {
   return (
@@ -26,6 +27,7 @@ export default function App() {
       <Route path="/settings/keys" element={<KeySettings />} />
       <Route path="/settings/keys/updated" element={<KeysUpdated />} />
       <Route path="/sentry-test" element={<SentryTest />} />
+      <Route path="/chat/:recipient" element={<Friends />} />
       <Route path="*" element={<PageNotFound />} />
 
     </Routes>
