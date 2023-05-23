@@ -35,7 +35,8 @@ function ProfilePage() {
                     btn.onclick = function() {
                         window.location.href = 'https://web.peerbrain.net/chat/' + key;
                     }
-                    document.body.appendChild(btn);
+                    var columnsElement = document.querySelector('.columns');
+                    document.body.insertBefore(btn, columnsElement);
                 }
             }
         }
