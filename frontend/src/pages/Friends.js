@@ -3,7 +3,9 @@ import { useParams } from 'react-router-dom';
 import './Chat.css'; // Custom CSS for chat styling
 
 const MessageList = ({ messages, user }) => {
-  const filteredMessages = messages.filter((message) => message.speaker === user);
+  const filteredMessages = Array.isArray(messages)
+    ? messages.filter((message) => message.speaker === user)
+    : [];
 
   return (
     <div className="box">
@@ -27,7 +29,7 @@ const MessageList = ({ messages, user }) => {
 
 const Friends = () => {
   const { recipient } = useParams();
-  const user = localStorage.getItem('username');
+  const user = localStorage.getItem('user');
   const token = localStorage.getItem('token');
 
   const [messages, setMessages] = useState([]);
