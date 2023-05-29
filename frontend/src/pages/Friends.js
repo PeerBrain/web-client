@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import * as Sentry from "@sentry/react";
 import { useParams } from 'react-router-dom';
 import './Chat.css'; // Custom CSS for chat styling
 
@@ -29,8 +30,12 @@ const MessageList = ({ messages, user }) => {
 
 const Friends = () => {
   const { recipient } = useParams();
-  const user = localStorage.getItem('user');
-  const token = localStorage.getItem('token');
+  const [user, setUser] = useState(localStorage.getItem('username') || '');
+  const [token, setToken] = useState(localStorage.getItem('token') || '');
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const [friends, setFriends] = useState([]);
+  Sentry.setUser({ username: user });
 
   const [messages, setMessages] = useState([]);
 
