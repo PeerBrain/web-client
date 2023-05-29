@@ -3,7 +3,6 @@ import { useParams } from 'react-router-dom';
 import './Chat.css'; // Custom CSS for chat styling
 
 const MessageList = ({ messages, user }) => {
-  console.log(messages);
   const filteredMessages = Array.isArray(messages)
     ? messages.filter((message) => message.speaker === user)
     : [];
@@ -12,17 +11,21 @@ const MessageList = ({ messages, user }) => {
     <div className="box">
       <div className="container">
         <h1 className="title">{user}</h1>
-        <div className="message-container">
-          {filteredMessages.map((message, index) => (
-            <div
-              key={index}
-              className={`message ${message.speaker === user ? 'is-sender' : 'is-receiver'}`}
-            >
-              <p className="message-content">{message.text}</p>
-              <p className="message-sender">{message.speaker}</p>
-            </div>
-          ))}
-        </div>
+        {filteredMessages.length > 0 ? (
+          <div className="message-container">
+            {filteredMessages.map((message, index) => (
+              <div
+                key={index}
+                className={`message ${message.speaker === user ? 'is-sender' : 'is-receiver'}`}
+              >
+                <p className="message-content">{message.text}</p>
+                <p className="message-sender">{message.speaker}</p>
+              </div>
+            ))}
+          </div>
+        ) : (
+          <p>No messages available</p>
+        )}
       </div>
     </div>
   );
@@ -30,10 +33,10 @@ const MessageList = ({ messages, user }) => {
 
 const Friends = () => {
   const { recipient } = useParams();
-  const user = localStorage.getItem('user');
+  const user = localStorage.getItem('username');
   const token = localStorage.getItem('token');
 
-  const [messages, setMessages] = useState([]);
+  const [messages, setMessages] = useState(null);
 
   useEffect(() => {
     const fetchMessages = async () => {
@@ -69,7 +72,11 @@ const Friends = () => {
 
   return (
     <div>
-      <MessageList messages={messages} user={user} />
+      {messages !== null ? (
+        <MessageList messages={messages} user={user} />
+      ) : (
+        <p>Loading messages...</p>
+      )}
       <div className="box">
         <div className="field has-addons">
           <div className="control is-expanded">
