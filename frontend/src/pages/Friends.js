@@ -3,7 +3,9 @@ import { useParams } from 'react-router-dom';
 import './Chat.css'; // Custom CSS for chat styling
 
 const MessageList = ({ messages, user }) => {
-  const filteredMessages = messages.filter((message) => message.speaker === user);
+  const filteredMessages = Array.isArray(messages)
+    ? messages.filter((message) => message.speaker === user)
+    : [];
 
   return (
     <div className="box">
@@ -45,7 +47,6 @@ const Friends = () => {
             },
           }
         );
-
         if (response.ok) {
           const data = await response.json();
           console.log('API Response:', data);
