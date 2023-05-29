@@ -3,13 +3,15 @@ import { useParams } from 'react-router-dom';
 import './Chat.css'; // Custom CSS for chat styling
 
 const MessageList = ({ messages, user }) => {
+  const messageArray = Array.isArray(messages) ? messages : [];
+
   return (
     <div className="box">
       <div className="container">
         <h1 className="title">{user}</h1>
-        {messages.length > 0 ? (
+        {messageArray.length > 0 ? (
           <div className="message-container">
-            {messages.map((message, index) => (
+            {messageArray.map((message, index) => (
               <div
                 key={index}
                 className={`message ${message.speaker === user ? 'is-sender' : 'is-receiver'}`}
