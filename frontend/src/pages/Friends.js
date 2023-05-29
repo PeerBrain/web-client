@@ -32,7 +32,7 @@ const Friends = () => {
   const user = localStorage.getItem('user');
   const token = localStorage.getItem('token');
 
-  const [messages, setMessages] = useState([]);
+  const [messages, setMessages] = useState(null);
 
   useEffect(() => {
     const fetchMessages = async () => {
@@ -68,7 +68,11 @@ const Friends = () => {
 
   return (
     <div>
-      <MessageList messages={messages || []} user={user} />
+      {messages !== null ? (
+        <MessageList messages={messages} user={user} />
+      ) : (
+        <p>Loading messages...</p>
+      )}
       <div className="box">
         <div className="field has-addons">
           <div className="control is-expanded">
