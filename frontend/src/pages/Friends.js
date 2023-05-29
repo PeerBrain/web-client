@@ -50,6 +50,7 @@ const Friends = () => {
         );
         if (response.ok) {
           const data = await response.json();
+          console.log('API Response:', data); // Log the response to inspect its format
           if (Array.isArray(data)) {
             setMessages(data);
           } else {
@@ -84,6 +85,7 @@ const Friends = () => {
 
         if (response.ok) {
           const data = await response.json();
+          console.log('API Response:', data); // Log the response to inspect its format
           if (Array.isArray(data)) {
             setMessages(data);
           } else {
