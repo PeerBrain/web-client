@@ -3,9 +3,7 @@ import { useParams } from 'react-router-dom';
 import './Chat.css'; // Custom CSS for chat styling
 
 const MessageList = ({ messages, user }) => {
-  const filteredMessages = Array.isArray(messages)
-    ? messages.filter((message) => message.speaker === user)
-    : [];
+  const filteredMessages = messages.filter((message) => message.speaker === user);
 
   return (
     <div className="box">
@@ -33,7 +31,6 @@ const Friends = () => {
   const token = localStorage.getItem('token');
 
   const [messages, setMessages] = useState([]);
-  const [newMessage, setNewMessage] = useState('');
 
   useEffect(() => {
     const fetchMessages = async () => {
@@ -48,6 +45,7 @@ const Friends = () => {
             },
           }
         );
+
         if (response.ok) {
           const data = await response.json();
           console.log('API Response:', data);
@@ -64,34 +62,7 @@ const Friends = () => {
   }, [recipient, token]);
 
   const handleSendMessage = async () => {
-    if (newMessage.trim() !== '') {
-      try {
-        const response = await fetch('https://peerbrain.teckhawk.be/api/v1/dm-conversation', {
-          method: 'POST',
-          headers: {
-            Authorization: `Bearer ${token}`,
-            'Content-Type': 'application/json',
-            Accept: 'application/json',
-          },
-          body: JSON.stringify({
-            friend_username: recipient,
-            message: newMessage,
-          }),
-        });
-
-        if (response.ok) {
-          const data = await response.json();
-          console.log('API Response:', data);
-          setMessages(data);
-        } else {
-          throw new Error('Failed to send message');
-        }
-      } catch (error) {
-        console.log(error);
-      }
-
-      setNewMessage('');
-    }
+    // Code for sending a message
   };
 
   return (
@@ -104,8 +75,8 @@ const Friends = () => {
               className="input"
               type="text"
               placeholder="Type a message..."
-              value={newMessage}
-              onChange={(e) => setNewMessage(e.target.value)}
+              value={''} // Replace with the value of the message input
+              onChange={() => {}} // Replace with the onChange handler for the message input
             />
           </div>
           <div className="control">
