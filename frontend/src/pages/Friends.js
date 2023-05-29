@@ -4,12 +4,11 @@ import './Chat.css'; // Custom CSS for chat styling
 
 const MessageList = ({ messages, user }) => {
   const filteredMessages = messages.filter((message) => message.speaker === user);
-  const { recipient } = useParams();
 
   return (
     <div className="box">
       <div className="container">
-        <h1 className="title">{recipient}</h1>
+        <h1 className="title">{user}</h1>
         <div className="message-container">
           {filteredMessages.map((message, index) => (
             <div
@@ -79,7 +78,6 @@ const Friends = () => {
 
         if (response.ok) {
           const data = await response.json();
-          // Assuming the API responds with the updated message list, you can update the messages state
           setMessages(data);
         } else {
           throw new Error('Failed to send message');
