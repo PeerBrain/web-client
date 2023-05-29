@@ -33,7 +33,7 @@ const MessageList = ({ messages, user }) => {
 
 const Friends = () => {
   const { recipient } = useParams();
-  const user = localStorage.getItem('username');
+  const user = localStorage.getItem('usermame');
   const token = localStorage.getItem('token');
 
   const [messages, setMessages] = useState(null);
