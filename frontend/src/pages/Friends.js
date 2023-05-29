@@ -3,15 +3,13 @@ import { useParams } from 'react-router-dom';
 import './Chat.css'; // Custom CSS for chat styling
 
 const MessageList = ({ messages, user }) => {
-  const messageArray = Array.isArray(messages) ? messages : [];
-
   return (
     <div className="box">
       <div className="container">
         <h1 className="title">{user}</h1>
-        {messageArray.length > 0 ? (
+        {messages.length > 0 ? (
           <div className="message-container">
-            {messageArray.map((message, index) => (
+            {messages.map((message, index) => (
               <div
                 key={index}
                 className={`message ${message.speaker === user ? 'is-sender' : 'is-receiver'}`}
@@ -31,7 +29,7 @@ const MessageList = ({ messages, user }) => {
 
 const Friends = () => {
   const { recipient } = useParams();
-  const user = localStorage.getItem('username');
+  const user = localStorage.getItem('user');
   const token = localStorage.getItem('token');
 
   const [messages, setMessages] = useState([]);
@@ -70,11 +68,7 @@ const Friends = () => {
 
   return (
     <div>
-      {messages.length > 0 ? (
-        <MessageList messages={messages} user={user} />
-      ) : (
-        <p>Loading messages...</p>
-      )}
+      <MessageList messages={messages} user={user} />
       <div className="box">
         <div className="field has-addons">
           <div className="control is-expanded">
