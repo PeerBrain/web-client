@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import './Chat.css'; // Custom CSS for chat styling
 
 const MessageList = ({ messages, user }) => {
+  console.log(messages);
   const filteredMessages = Array.isArray(messages)
     ? messages.filter((message) => message.speaker === user)
     : [];
