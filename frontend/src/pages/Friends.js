@@ -50,7 +50,9 @@ const Friends = () => {
         if (response.ok) {
           const data = await response.json();
           console.log('API Response:', data);
-          setMessages(data);
+          let out = data.replace(/\\/g, "");
+          console.log('API Responses:', out);
+          setMessages(out);
         } else {
           throw new Error('Failed to fetch messages');
         }
